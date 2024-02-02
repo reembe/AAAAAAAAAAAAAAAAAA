@@ -37,7 +37,7 @@ private JMenuItem save;
     {
         user = s;
 
-        File file = new File("candyland.wav");
+        File file = new File("candyland (2).wav");
 		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
 		clip = AudioSystem.getClip();
 		clip.open(audioStream);
