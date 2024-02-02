@@ -25,7 +25,7 @@ public class introductionMenu extends JFrame implements ActionListener{
     private JButton option1;
     private JButton option2;
     private JButton continueButton;
-	private JTextField textField;
+    private JTextField textField;
     private int buttonsPressed;
     private String currentOption;
     public static int reqCount;
