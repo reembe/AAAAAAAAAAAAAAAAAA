@@ -1,11 +1,10 @@
-/**
- * This class adds has level french listening
- *
- * contains the full game and data, as well as gui 
- */
-
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,12 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
 import javax.swing.Timer;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 public class Listening implements ActionListener{
@@ -41,7 +36,6 @@ public class Listening implements ActionListener{
     private static String answer;
     private static int correct_guesses;
 	private JButton returnHome;
-	private Clip clip;
 	private static int seconds = 10;
 	private static int char_list = -1;
 	private String[] AnswerString;
@@ -58,70 +52,67 @@ public class Listening implements ActionListener{
 			}
 			}
 		});
-
-
-		    public Listening(User s) {
-		user = s;
-    }
-
 	
-    public void Quiz() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		
+    public void Quiz(User users) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		 user = users;
+
+		 String[] mg = {
+            "1. Il est déprimé.",
+            "2. Il dort trop.",
+            "3. Il ne fait pas assez d'exercice.",
+            "4. Il a des douleurs à la gorge.",
+            "5. Il a beaucoup d'allergies.",
+            "6. Il a mal au dos.",
+            "7. Il ne mange pas sainement.",
+            "8. Il a de la fièvre."};
 
 
-		String[] mg = {
-			"1. Il est déprimé.",
-			"2. Il dort trop.",
-			"3. Il ne fait pas assez d'exercice.",
-			"4. Il a des douleurs à la gorge.",
-			"5. Il a beaucoup d'allergies.",
-			"6. Il a mal au dos.",
-			"7. Il ne mange pas sainement.",
-			"8. Il a de la fièvre."};
+        String[] answers = {"true", "false", "true", "false", "false", "true", "true", "false"};
 
-	    String[] answers = {"true", "false", "true", "false", "false", "true", "true"};
-		AnswerString = answers;
-        questions = mg;
+		 AnswerString = answers;
+		 questions = mg;
 		
 
 		GameStarter();
 		}
 
-	
     
 		
         public void GameStarter() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 
 		File file = new File("frenchaudio.wav");
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-		Clip clip = AudioSystem.getClip();
-		clip.open(audioStream);
-		clip.start();
-	
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1920,1080);
-		//bottom big half bg
 		frame.getContentPane().setBackground(Color.white);
 		frame.setLayout(null);
 		frame.setResizable(false);
-		frame.setTitle("Listening");
+
+		returnHome = new JButton();
+		returnHome.setBounds(500,500,500,100);
+		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,50));
+		returnHome.setFocusable(false);
+		returnHome.addActionListener(this);
+		returnHome.setText("Return to Menu?");
 		
 		textfield.setBounds(-250,0,1920,50);
-		//vv for the bottom background in t/f
-		textfield.setBackground((Color.pink)); //pink from intro menu
-		textfield.setForeground(new Color(0,0,0)); //nvm
+		textfield.setBackground(new Color(255,255,255));
+		textfield.setForeground(new Color(249,207,242));//purble
 		textfield.setFont(new Font("WEST JAVA",Font.BOLD,30));
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
 		textfield.setEditable(false);
-		//vv second top rectangle thing with the questions displayed
+		
 		textarea.setBounds(0,50,1920,50);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
-		textarea.setBackground((Color.pink));
-		textarea.setForeground(new Color(0,0,0)); //lol nvm
-		textarea.setFont(new Font("WEST JAVA",Font.BOLD,40));
+		textarea.setBackground(new Color(255,255,255));
+		textarea.setForeground(new Color(249,207,242));
+		textarea.setFont(new Font("WEST JAVA",Font.BOLD,25));
 		textarea.setBorder(BorderFactory.createBevelBorder(1));
 		textarea.setEditable(false);
 		
@@ -145,7 +136,8 @@ public class Listening implements ActionListener{
 		seconds_left.setOpaque(true);
 		seconds_left.setHorizontalAlignment(JTextField.CENTER);
 		seconds_left.setText(String.valueOf(seconds));
-		
+
+		//*dont change anything except for the color of the words
 		number_right.setBounds(620,225,200,100);
 		number_right.setBackground(new Color(255,255,255));
 		number_right.setForeground(new Color(249,207,242));
@@ -168,8 +160,11 @@ public class Listening implements ActionListener{
 		frame.add(buttonB);
 		frame.add(textarea);
 		frame.add(textfield);
+		frame.add(returnHome);
 
 		frame.setVisible(true);
+
+		returnHome.setVisible(false);
 		
 		nextQuestion();
 	}
@@ -183,12 +178,10 @@ public class Listening implements ActionListener{
 		}
 		else {
 			
-			textfield.setText("Question "+(index+1));
+	        textfield.setText("Question "+(index+1));
 			textarea.setText(questions[index]);
-			
-			System.out.println(index);
+
 			timer.start();
-			System.out.print(seconds);
 			index++;
 		}
 	}
@@ -226,16 +219,22 @@ public class Listening implements ActionListener{
 	public void displayAnswer() {
 		
 		timer.stop();
+
+	
 		
-		if(AnswerString[char_list].equals("false"))
+		if(AnswerString[char_list].equals("false")){
 			buttonA.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("false"))
-			buttonB.setForeground(new Color(0,255,0));
+	}
+		if(AnswerString[char_list].equals("false")){
+			buttonB.setForeground(new Color(0,255,0));}
 
 		if(AnswerString[char_list].equals("true")) {
 		    buttonB.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("true")) {
-				buttonA.setForeground(new Color(0,255,0));}
+		}
+		if(AnswerString[char_list].equals("true")) {
+			buttonA.setForeground(new Color(0,255,0));
+		}
+
 
 		Timer pause = new Timer(2000, new ActionListener() {
 			
@@ -259,7 +258,7 @@ public class Listening implements ActionListener{
 		pause.setRepeats(false);
 		pause.start();
 	}
-}
+	
 
 	public void results(){
 		
@@ -276,8 +275,6 @@ public class Listening implements ActionListener{
 		
 		frame.add(number_right);
 		frame.add(percentage);
-
-		clip.stop();
 
 		returnHome.setVisible(true);	
 		

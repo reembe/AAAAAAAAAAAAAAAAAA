@@ -350,7 +350,7 @@ public class Games extends JFrame implements ActionListener {
 			}
 		if(AnswerChars[char_list] != 'D')
 			answer_labelD.setForeground(new Color(255,0,0));
-			if(AnswerChars[char_list] == 'B')
+			if(AnswerChars[char_list] == 'D')
 			{
 				answer_labelD.setForeground(new Color(0,255,0));
 			}
@@ -414,13 +414,5 @@ public class Games extends JFrame implements ActionListener {
 		returnHome.setVisible(true);	
 		
 	}
-    public void Listening() {
-        if (language.equals("french")) {
-
-        }
-        if (language.equals("spanish")) {
-
-        }
-    }
     }
 

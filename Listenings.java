@@ -26,7 +26,7 @@ import javax.swing.Timer;
 
 public class Listenings extends JFrame implements ActionListener {
 
-    private String language;
+   
 	private JButton returnHome; 
     private JFrame frame = new JFrame();
 	private JTextField textfield = new JTextField();
@@ -109,7 +109,6 @@ public class Listenings extends JFrame implements ActionListener {
 		clip.start();
 
 
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1920,1080);
 		//bottom big half bg
@@ -126,6 +125,7 @@ public class Listenings extends JFrame implements ActionListener {
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
 		textfield.setEditable(false);
+
 		//vv second top rectangle thing with the questions displayed
 		textarea.setBounds(0,50,1920,50);
 		textarea.setLineWrap(true);
@@ -156,13 +156,12 @@ public class Listenings extends JFrame implements ActionListener {
 		buttonC.addActionListener(this);
 		buttonC.setText("C");
 
-
-		returnHome = new JButton(); //REEMMM THIS IS WHERE I CHNANGED FOR THE RETURN HOME BUTTON TO EXTEND IT
+		returnHome = new JButton();
 		returnHome.setBounds(500,500,500,100);
-		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,100));
+		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		returnHome.setFocusable(false);
 		returnHome.addActionListener(this);
-		returnHome.setText("Return");
+		returnHome.setText("Return to Menu?");
 
 	
 		answer_labelA.setBounds(200,150,5000,100);
@@ -190,35 +189,33 @@ public class Listenings extends JFrame implements ActionListener {
 		seconds_left.setHorizontalAlignment(JTextField.CENTER);
 		seconds_left.setText(String.valueOf(seconds));
 		
-		number_right.setBounds(225,225,200,100);
+		number_right.setBounds(640,225,200,100);
 		number_right.setBackground(new Color(255,255,255));
-		number_right.setForeground(new Color(207,252,255));
+		number_right.setForeground(new Color(0,0,0));
 		number_right.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		number_right.setBorder(BorderFactory.createBevelBorder(1));
 		number_right.setHorizontalAlignment(JTextField.CENTER);
 		number_right.setEditable(false);
 		
-		percentage.setBounds(225,325,200,100);
+		percentage.setBounds(640,325,200,100);
 		percentage.setBackground(new Color(207,252,255));
-		percentage.setForeground(new Color(207,252,255));
+		percentage.setForeground(new Color(249,207,242)); //percentage color
 		percentage.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
 		
-		
 		frame.add(seconds_left);
 		frame.add(answer_labelA);
 		frame.add(answer_labelB);
 		frame.add(answer_labelC);
-	
 		frame.add(buttonA);
 		frame.add(buttonB);
 		frame.add(buttonC);
-	
 		frame.add(textarea);
 		frame.add(textfield);
 		frame.add(returnHome);
+
 
 		returnHome.setVisible(false);
 		
@@ -233,6 +230,7 @@ public class Listenings extends JFrame implements ActionListener {
 		
 		
 		if(index>=questions.length) {
+		
 			results();
 		}
 		else {
@@ -323,9 +321,9 @@ public class Listenings extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				answer_labelA.setForeground(new Color(233,220,245));
-				answer_labelB.setForeground(new Color(233,220,245));
-				answer_labelC.setForeground(new Color(233,220,245));
+				answer_labelA.setForeground(Color.black);
+				answer_labelB.setForeground(Color.black);
+				answer_labelC.setForeground(Color.black);
 				
 				answer = ' ';
 				seconds=10;
@@ -366,19 +364,12 @@ public class Listenings extends JFrame implements ActionListener {
 		
 		frame.add(number_right);
 		frame.add(percentage);
-		clip.stop();
+		
 
-		returnHome.setVisible(true);	
+
+		returnHome.setVisible(true);
+			
 		
 	}
-
-    public void Listening() {
-        if (language.equals("french")) {
-
-        }
-        if (language.equals("spanish")) {
-
-        }
-    }
     }
 

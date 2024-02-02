@@ -180,10 +180,10 @@ private JMenuItem save;
         {
             if (user.getLanguage().equals("french"))
             {
-            Listening Listening = new Listening(user);
+            Listening Listening = new Listening();
             try {
                 clip.stop();
-                Listening.Quiz();
+                Listening.Quiz(user);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

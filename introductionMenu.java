@@ -52,7 +52,7 @@ public class introductionMenu extends JFrame implements ActionListener{
 
         button = new JButton("Submit Name");
 		button.addActionListener(this);
-        button.setBounds(490,600,110,100);
+        button.setBounds(480,600,120,100);
         button.setBackground(Color.white);
 		button.setForeground(Color.black);
 

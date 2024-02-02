@@ -53,19 +53,19 @@ public class TrueOrFalseS implements ActionListener{
 		 user = users;
 
 
-		String[] mg = {"1. El español es el único idioma que se habla en España.",
-        "2. El Día de los Muertos se celebra el 31 de octubre de cada año.",
-        "3. La bandera mexicana es roja, blanca y verde.",
-        "4. Los idiomas no estan en mayuscula en español.",
-        "5. Madrid está situada en el centro físico del país.",
-        "6. Stem-change verbs in the Preterite are called Boot verbs.",
-        "7. Bag is \"una bolsa\" in Spanish.",
-        "8. Possessive Adjectives express the quality of the ownership.",
-        "9. -er and -ir verbs share the same endings in the Preterite.",
-        "10. There are 2 pronouns in Spanish."};
-        String[] answers = {"false", "false", "true", "true", "true", "false", "true", "true", "true", "false"};
-        AnswerString = answers;
-        questions = mg;
+		 String[] mg = {"1. El español es el único idioma que se habla en España.",
+		 "2. El Día de los Muertos se celebra el 31 de octubre de cada año.",
+		 "3. La bandera mexicana es roja, blanca y verde.",
+		 "4. Los idiomas no estan en mayuscula en español.",
+		 "5. Madrid está situada en el centro físico del país.",
+		 "6. Stem-change verbs in the Preterite are called Boot verbs.",
+		 "7. Bag is \"una bolsa\" in Spanish.",
+		 "8. Possessive Adjectives express the quality of the ownership.",
+		 "9. -er and -ir verbs share the same endings in the Preterite.",
+		 "10. There are 2 pronouns in Spanish."};
+		 String[] answers = {"false", "false", "true", "true", "true", "false", "true", "true", "true", "false"};
+		 AnswerString = answers;
+		 questions = mg;
 		
 
 		GameStarter();
@@ -82,7 +82,7 @@ public class TrueOrFalseS implements ActionListener{
 		frame.setResizable(false);
 
 		returnHome = new JButton();
-		returnHome.setBounds(0,500,100,100);
+		returnHome.setBounds(500,500,500,100);
 		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		returnHome.setFocusable(false);
 		returnHome.addActionListener(this);
@@ -90,7 +90,7 @@ public class TrueOrFalseS implements ActionListener{
 		
 		textfield.setBounds(-250,0,1920,50);
 		textfield.setBackground(new Color(255,255,255));
-		textfield.setForeground(new Color(25,255,0));
+		textfield.setForeground(new Color(249,207,242));//purble
 		textfield.setFont(new Font("WEST JAVA",Font.BOLD,30));
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
@@ -100,7 +100,7 @@ public class TrueOrFalseS implements ActionListener{
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
 		textarea.setBackground(new Color(255,255,255));
-		textarea.setForeground(new Color(25,255,0));
+		textarea.setForeground(new Color(249,207,242));
 		textarea.setFont(new Font("WEST JAVA",Font.BOLD,25));
 		textarea.setBorder(BorderFactory.createBevelBorder(1));
 		textarea.setEditable(false);
@@ -134,7 +134,7 @@ public class TrueOrFalseS implements ActionListener{
 		number_right.setBorder(BorderFactory.createBevelBorder(1));
 		number_right.setHorizontalAlignment(JTextField.CENTER);
 		number_right.setEditable(false);
-		//COME BACK HERE
+	
 		percentage.setBounds(620,325,200,100);
 		percentage.setBackground(new Color(255,255,255));
 		percentage.setForeground(new Color(249,207,242));
@@ -149,8 +149,11 @@ public class TrueOrFalseS implements ActionListener{
 		frame.add(buttonB);
 		frame.add(textarea);
 		frame.add(textfield);
+		frame.add(returnHome);
 
 		frame.setVisible(true);
+
+		returnHome.setVisible(false);
 		
 		nextQuestion();
 	}
@@ -164,12 +167,10 @@ public class TrueOrFalseS implements ActionListener{
 		}
 		else {
 			
-			textfield.setText("Question "+(index+1));
+	        textfield.setText("Question "+(index+1));
 			textarea.setText(questions[index]);
-			
-			System.out.println(index);
+
 			timer.start();
-			System.out.print(seconds);
 			index++;
 		}
 	}
@@ -207,16 +208,20 @@ public class TrueOrFalseS implements ActionListener{
 	public void displayAnswer() {
 		
 		timer.stop();
+
+	
 		
-		if(AnswerString[char_list].equals("false"))
+		if(AnswerString[char_list].equals("false")){
 			buttonA.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("false"))
-			buttonB.setForeground(new Color(0,255,0));
+	}
+		if(AnswerString[char_list].equals("false")){
+			buttonB.setForeground(new Color(0,255,0));}
 
 		if(AnswerString[char_list].equals("true")) {
 		    buttonB.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("true")) {
-				buttonA.setForeground(new Color(0,255,0));
+		}
+		if(AnswerString[char_list].equals("true")) {
+			buttonA.setForeground(new Color(0,255,0));
 		}
 
 
@@ -227,11 +232,13 @@ public class TrueOrFalseS implements ActionListener{
 				
 				buttonA.setForeground(Color.black);
 				buttonB.setForeground(Color.black);
+				
 				answer = " ";
 				seconds=10;
 				seconds_left.setText(String.valueOf(seconds));
 				buttonA.setEnabled(true);
 				buttonB.setEnabled(true);
+			
 				nextQuestion();
 				
 			}
@@ -240,19 +247,24 @@ public class TrueOrFalseS implements ActionListener{
 		pause.setRepeats(false);
 		pause.start();
 	}
-	}
+	
 
 	public void results(){
 		
 		buttonA.setEnabled(false);
-		buttonB.setEnabled(false);	
+		buttonB.setEnabled(false);
+				
 		int result = (int)((correct_guesses/(double)questions.length)*100);
+		
 		textfield.setText("Your score:");
 		textarea.setText("");
+		
 		number_right.setText("("+correct_guesses+"/"+questions.length+")");
 		percentage.setText(result+"%");
+		
 		frame.add(number_right);
 		frame.add(percentage);
+
 		returnHome.setVisible(true);	
 		
 	}

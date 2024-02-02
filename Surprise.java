@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.sound.sampled.*;
 
 public class Surprise extends JFrame implements ActionListener{
@@ -34,19 +33,19 @@ public class Surprise extends JFrame implements ActionListener{
         l.setText("So " + user + ", you worked real hard");
         l.setBounds(50,57,10000000,100);
         l.setForeground(Color.black);
-        l.setFont(new Font("WEST JAVA", Font.BOLD, 75));
+        l.setFont(new Font("WEST JAVA", Font.BOLD, 60));
 
         JLabel j =  new JLabel();
         j.setText("you better pass your exams now");
         j.setBounds(150,127,10000000,100);
         j.setForeground(Color.black);
-        j.setFont(new Font("WEST JAVA", Font.BOLD, 75));
+        j.setFont(new Font("WEST JAVA", Font.BOLD, 60));
 
         JLabel k =  new JLabel();
         k.setText("click the button below to reveal your reward");
         k.setBounds(150,197,10000000,100);
         k.setForeground(Color.black);
-        k.setFont(new Font("WEST JAVA", Font.BOLD, 75));
+        k.setFont(new Font("WEST JAVA", Font.BOLD, 60));
 
         rewardmessage =  new JLabel();
         rewardmessage.setText("TIMBITS FOR THE WHOLE CLASS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -57,14 +56,14 @@ public class Surprise extends JFrame implements ActionListener{
 
 
         reward =  new JButton();
-		reward.setBounds(1500,850,400,175);
+		reward.setBounds(1000,800,400,175);
 		reward.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		reward.setFocusable(false);
 		reward.addActionListener(this);
 		reward.setText("CLICK HERE !!");
 
         returntoMenu =  new JButton();
-		returntoMenu.setBounds(1600,850,300,175);
+		returntoMenu.setBounds(1000,800,400,175);
 		returntoMenu.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		returntoMenu.setFocusable(false);
 		returntoMenu.addActionListener(this);

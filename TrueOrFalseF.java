@@ -82,7 +82,7 @@ public class TrueOrFalseF implements ActionListener{
 		frame.setResizable(false);
 
 		returnHome = new JButton();
-		returnHome.setBounds(0,500,100,100);
+		returnHome.setBounds(500,500,500,100);
 		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,50));
 		returnHome.setFocusable(false);
 		returnHome.addActionListener(this);
@@ -149,8 +149,11 @@ public class TrueOrFalseF implements ActionListener{
 		frame.add(buttonB);
 		frame.add(textarea);
 		frame.add(textfield);
+		frame.add(returnHome);
 
 		frame.setVisible(true);
+
+		returnHome.setVisible(false);
 		
 		nextQuestion();
 	}
@@ -164,12 +167,10 @@ public class TrueOrFalseF implements ActionListener{
 		}
 		else {
 			
-			textfield.setText("Question "+(index+1));
+	        textfield.setText("Question "+(index+1));
 			textarea.setText(questions[index]);
-			
-			System.out.println(index);
+
 			timer.start();
-			System.out.print(seconds);
 			index++;
 		}
 	}
@@ -207,16 +208,20 @@ public class TrueOrFalseF implements ActionListener{
 	public void displayAnswer() {
 		
 		timer.stop();
+
+	
 		
-		if(AnswerString[char_list].equals("false"))
+		if(AnswerString[char_list].equals("false")){
 			buttonA.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("false"))
-			buttonB.setForeground(new Color(0,255,0));
+	}
+		if(AnswerString[char_list].equals("false")){
+			buttonB.setForeground(new Color(0,255,0));}
 
 		if(AnswerString[char_list].equals("true")) {
 		    buttonB.setForeground(new Color(255,90,85));
-			if(AnswerString[char_list].equals("true")) {
-				buttonA.setForeground(new Color(0,255,0));
+		}
+		if(AnswerString[char_list].equals("true")) {
+			buttonA.setForeground(new Color(0,255,0));
 		}
 
 
@@ -242,7 +247,7 @@ public class TrueOrFalseF implements ActionListener{
 		pause.setRepeats(false);
 		pause.start();
 	}
-	}
+	
 
 	public void results(){
 		
