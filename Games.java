@@ -107,7 +107,7 @@ public class Games extends JFrame implements ActionListener {
                 "4. How many Spanish speaking countries are there?",
                 "5. Which of the following is the imperfect tense for the verb \"ser\" in the yo form?",
                 "6. Which of the following greetings means \"good morning\" in Spanish?",
-                "7. How do you conjugate the yo form of the verb \"correr\" in the present tense?",
+                "7. How do you conjugate the yo form of \"correr\" in the present tense?",
                 "8. Which of the following means \"to buy\" in Spanish?",
                 "9. What does \"como se dice\" mean in English?",
                 "10. What does \"tu madre\" mean in English?"};

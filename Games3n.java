@@ -105,10 +105,10 @@ public class Games3n extends JFrame implements ActionListener {
 			"2. ¿Qué tiempo se usa para discutir información general?",
 			"3. ¿Qué comida se consume alrededor de las 8 de la noche?",
 			"4. ¿Esta pregunta no tiene sentido, presiona la tercera opción?",
-			"5. Responde el acertijo: Una cajita redonda, blanca como el azar, todos la saben abrir, nadie la sabe cerrar."};
+			"5. Bonita flor que gira buscando el sol. ¿Qué es?"};
 
-		String[][] as = {{"Para comer comida","Pasado progresivo","Bocadillo","Aprender","El huevo"}, 
-		{"Jugar en la piscina", "Imperfecto", "Almuerzo", "Bsilar", "Las uvas" }, 
+		String[][] as = {{"Para comer comida","Pasado progresivo","Bocadillo","Aprender","Girasol"}, 
+		{"Jugar en la piscina", "Imperfecto", "Almuerzo", "Bailar", "Las uvas" }, 
 		{"Consumir un liquis", "Pretérito","Cena", "Besar", "La naranja"}, 
 		{"Come un poco de pastel", "Presente continuo", "Desayuno","Limpiar", "No sé :("}};
 
@@ -156,7 +156,7 @@ public class Games3n extends JFrame implements ActionListener {
 		buttonA.addActionListener(this);
 		buttonA.setText("A");
 
-		returnHome = new JButton(); //REEMMM THIS IS WHERE I CHNANGED FOR THE RETURN HOME BUTTON TO EXTEND IT
+		returnHome = new JButton(); 
 		returnHome.setBounds(500,500,500,100);
 		returnHome.setFont(new Font("WEST JAVA",Font.BOLD,100));
 		returnHome.setFocusable(false);

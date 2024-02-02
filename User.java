@@ -82,18 +82,18 @@ public class User {
                 userList[userList.length - k - 1] = j;
     
             }
-    for (int k = 0; k < userList.length / 2; k++)
+    for (int k = 0; k < reqPrimArray.length / 2; k++)
             {
-                User j = userList[k];
-                userList[k] = userList[userList.length - k - 1];
-                userList[userList.length - k - 1] = j;
+                int j = reqPrimArray[k];
+                reqPrimArray[k] = reqPrimArray[reqPrimArray.length - k - 1];
+                reqPrimArray[reqPrimArray.length - k - 1] = j;
     
             }
-    for (int k = 0; k < userList.length / 2; k++)
+    for (int k = 0; k < reqObjectArray.length / 2; k++)
             {
-                User j = userList[k];
-                userList[k] = userList[userList.length - k - 1];
-                userList[userList.length - k - 1] = j;
+                User j = reqObjectArray[k];
+                reqObjectArray[k] = reqObjectArray[reqObjectArray.length - k - 1];
+                reqObjectArray[reqObjectArray.length - k - 1] = j;
     
             }
 
