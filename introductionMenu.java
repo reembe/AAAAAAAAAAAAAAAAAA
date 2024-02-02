@@ -1,0 +1,160 @@
+/**
+ * This class adds has the intro
+ *
+ * player enters name and language
+ */
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class introductionMenu extends JFrame implements ActionListener{
+
+    private JButton button;
+    private JButton option1;
+    private JButton option2;
+    private JButton continueButton;
+	private JTextField textField;
+    private int buttonsPressed;
+    private String currentOption;
+    public static int reqCount;
+
+    public introductionMenu() throws FontFormatException, IOException 
+    {
+
+
+        File font_file = new File("joystix.ttf");
+        Font font = Font.createFont(Font.TRUETYPE_FONT, font_file);
+        Font sizedFont = font.deriveFont(40f);
+
+        JLabel title = new JLabel();
+        title.setText("Welcome to LOTE Helper!");
+        title.setBounds(300,57,10000000,100);
+        title.setForeground(Color.black);
+        title.setFont(sizedFont);
+
+        JLabel intro = new JLabel();
+        intro.setText("Enter your name then select a language");
+        intro.setBounds(100,107,100000,100);
+        intro.setForeground(Color.black);
+        intro.setFont(sizedFont);
+
+        button = new JButton("Submit Name");
+		button.addActionListener(this);
+        button.setBounds(490,600,110,100);
+        button.setBackground(Color.white);
+		button.setForeground(Color.black);
+
+
+        JLabel name = new JLabel();
+        name.setText("Name:");
+        name.setBounds(200,430,100000,100);
+        name.setForeground(Color.black);
+        name.setFont(sizedFont);
+
+		
+		textField = new JTextField();
+		textField.setPreferredSize(new Dimension(250,40));
+		textField.setFont(sizedFont);
+        textField.setBounds(200,500,1000,100);
+		textField.setForeground(Color.pink);
+		textField.setBackground(Color.white);
+		textField.setCaretColor(Color.pink);
+
+        option1 = new JButton("Spanish");
+		option1.addActionListener(this);
+        option1.setBounds(600,600,100,100);
+        option1.setBackground(Color.white);
+		option1.setForeground(Color.black);
+
+        option2 = new JButton("French");
+		option2.addActionListener(this);
+        option2.setBounds(700,600,100,100);
+        option2.setBackground(Color.white);
+		option2.setForeground(Color.black);
+
+        continueButton = new JButton("Continue");
+		continueButton.addActionListener(this);
+        continueButton.setBounds(800,600,100,100);
+        continueButton.setBackground(Color.white);
+		continueButton.setForeground(Color.black);
+    
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1920,1080);
+        this.getContentPane().setBackground(new Color(255,238,255));
+        this.setLayout(null);
+        this.setResizable(true);
+        this.setTitle("LOTE Helper");
+
+        this.setVisible(true);
+        this.add(title);
+        this.add(intro);
+        this.add(name);
+       
+        this.add(button);
+        this.add(option1);
+        this.add(option2);
+		this.add(textField);
+        this.add(continueButton);
+   
+        continueButton.setEnabled(false);		
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+            if(e.getSource()==button) {
+			button.setEnabled(false);
+			textField.setEditable(false);
+            buttonsPressed++;
+             
+		}
+         if(e.getSource()==option1) {
+             buttonsPressed++; 
+            currentOption = "spanish";
+            option2.setEnabled(false);
+            option1.setEnabled(false);	
+
+         }
+         if(e.getSource()==option2) {
+            buttonsPressed++;
+            currentOption = "french";
+            option1.setEnabled(false);
+            option2.setEnabled(false);	
+
+         }
+         if(e.getSource() == continueButton)
+         {
+            User user = new User(textField.getText(), currentOption);
+          
+                try {
+                    MainMenu MainMenu = new MainMenu(user);
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+           
+                this.setVisible(false);
+            
+            }
+            if (buttonsPressed == 2)
+       {
+        continueButton.setEnabled(true);
+       }
+        }
+
+    public void introductionMenu() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'introductionMenu'");
+    }
+}
